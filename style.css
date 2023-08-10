@@ -21,7 +21,7 @@ ul {
   .logo {
     font-family: 'Dancing Script', cursive;
     font-weight: bold;
-    font-size: 28px;
+    font-size: 36px;
   }
   
   .nav {
@@ -29,21 +29,27 @@ ul {
     align-items: center;
     justify-content: space-between;
     padding: 20px 0;
-    color: #c6b466;
+    color: #e4d42c;
+    text-shadow: #3b3838;
   }
   
   .nav a, footer a {
-    text-decoration: none;
+    text-decoration: underline;
     color: inherit;
   }
   
   .nav a:hover, footer a:hover {
-    color: #b45a5a;
+    color: #248f19;
   }
   
   .nav input:focus {
     outline-color: #b45a5a;
     outline-style: solid;
+  }
+
+  a.logo {
+    color: #9f0707;
+    text-decoration: none;
   }
   
   .container {
@@ -57,8 +63,8 @@ ul {
   }
   
   .site-search input {
-    border: 1px solid #3b3838;
-    border-radius: 4px 0 0 4px;
+    border: 1px solid #972323;
+    border-radius: 10px 0 0 10px;
   }
   
   .site-search button {
@@ -112,7 +118,7 @@ ul {
   }
   
   .shop-item .price {
-    background-color: #b45a5a;
+    background-color: #aabfc6;
     padding: 4px 8px;
     font-weight: 500;
     border-radius: 4px;
@@ -130,7 +136,7 @@ ul {
   
   .shop-item .rating {
     cursor: pointer;
-    color: #000;
+    color: #fcd913;
   }
   
   .shop-item .tags {
@@ -142,7 +148,7 @@ ul {
   }
   
   .shop-item .tag {
-    background: #c6b466;
+    background: #82b4a8;
     border-radius: 4px;
     padding: 4px 8px;
     cursor: pointer;

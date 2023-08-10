@@ -40,7 +40,7 @@ const items = [
     rating: 4.9,
   },
   {
-    title: "Паравоз Три Кота",
+    title: "Паровоз Три Кота",
     description: "Игрушка на батарейках со звуковыми эффектами!",
     tags: ["boy", "girl"],
     price: 34,
@@ -72,12 +72,12 @@ const items = [
     rating: 4.8,
   },
   {
-    title: "Чемоданчик с косметикой",
+    title: "Детская косметика",
     description: "Ваша дочка будет в восторге! Столько косметики даже у мамы нет!",
     tags: ["girl"],
     price: 85,
     img: "./img/makeup.jpg",
-    rating: 3.2,
+    rating: 2.2,
   },
   {
     title: "Пианино детское",
@@ -93,7 +93,7 @@ const items = [
     tags: ["boy"],
     price: 80,
     img: "./img/transformer.jpg",
-    rating: 4.1,
+    rating: 3.1,
   },
 ];
 
@@ -132,16 +132,63 @@ function prepareShopItem(shopItem) {
 let currentState = [...items];
 
 function renderItems(arr) {
-  nothingFound.textContent = '';
-  shopItem.innerHTML = '';
-  
+  nothingFound.textContent = "";
+  shopItem.innerHTML = "";
   arr.forEach((item) => {
     shopItem.append(prepareShopItem(item));
-  })
+  });
   
   if (!arr.length) {
-    nothingFound.textContent = 'Ничего не найдено';
+    nothingFound.textContent = "Ничего не найдено";
   }
 }
 
-renderItems(currentState);
+renderItems(currentState.sort((a, b) => sortByAlphabet(a, b)));
+
+function sortByAlphabet(a, b) {
+  if (a.title > b.title) {
+    return 1;
+  }
+  if (a.title < b.title) {
+    return -1;
+  }
+  return 0;
+}
+
+const sortControl = document.querySelector("#sort");
+
+sortControl.addEventListener("change", (event) => {
+  const selectedOption = event.target.value;
+  switch (selectedOption) {
+    case "expensive": {
+      currentState.sort((a, b) => b.price - a.price);
+      break;
+    }
+    case "cheap": {
+      currentState.sort((a, b) => a.price - b.price);
+      break;
+    }
+    case "rating": {
+      currentState.sort((a, b) => b.rating - a.rating);
+      break;
+    }
+  }
+  renderItems(currentState);
+})
+
+const searchInput = document.querySelector("#search-input");
+const searchButton = document.querySelector("#search-btn");
+
+function applySearch() {
+  const searchString = searchInput.value.trim().toLowerCase();
+
+  currentState = items.filter((el) =>
+  el.title.toLowerCase().includes(searchString)
+  );
+  currentState.sort((a, b) => sortByAlphabet(a, b));
+  sortControl.selectedIndex = 0;
+  renderItems(currentState);
+}
+
+searchButton.addEventListener("click", applySearch);
+searchInput.addEventListener("search", applySearch);
